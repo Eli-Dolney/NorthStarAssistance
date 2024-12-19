@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ESNext", // Allows modern JavaScript features
+    "module": "ESNext", // Use ES modules
+    "moduleResolution": "Node", // Resolves modules in Node.js style
+    "strict": true, // Enable strict type-checking options
+    "jsx": "preserve", // Needed for JSX/TSX support
+    "esModuleInterop": true, // Compatibility for CommonJS and ES modules
+    "skipLibCheck": true, // Skip type checks of all declaration files
+    "baseUrl": "./", // Base directory
+    "paths": {
+      "@/*": ["src/*"] // Aliases for cleaner imports
+    },
+    "types": ["vite/client", "node"], // Includes Vite and Node.js types
+    "allowSyntheticDefaultImports": true // For default imports in Vue files
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "vite.config.ts" // Include Vite configuration file
+  ],
+  "exclude": ["node_modules"] // Files to exclude
+}
