@@ -1,6 +1,6 @@
 <template>
   <div class="about-section">
-    <h1 ref="header">Welcome to NorthStar Assistance</h1>
+    <h1 ref="header">Welcome to NorthStar Assistance!</h1>
     <p ref="paragraph">
       We provide quality PCA services tailored to your needs.
     </p>
