@@ -135,11 +135,11 @@ onMounted(() => {
 /* Parallax (Hero) Section */
 .parallax {
   height: 100vh;
-  background: url('/src/assets/north.jpg') no-repeat center center fixed;
+  background: url('/src/assets/lights.jpg') no-repeat center center fixed;
   background-size: cover;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; ;
   margin: 0;
   padding: 0;
 }
