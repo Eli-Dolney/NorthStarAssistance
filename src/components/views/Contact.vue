@@ -10,27 +10,44 @@
 
     <!-- Main Contact Form & Info Section -->
     <section class="contact-section" ref="contactSection">
+      <!-- Contact Info (phone, email, coverage area) -->
       <div class="contact-info">
         <h2>Get In Touch</h2>
         <p>
           Have questions about our services, pricing, or anything else?
-          Fill out the form or reach us directly via phone or email.
+          Fill out the form below or reach us directly via phone or email.
         </p>
         <ul class="info-list">
           <li>
-            <strong>Phone:</strong> <span>(123) 456-7890</span>
+            <strong>Phone:</strong>
+            <span>(xxx) xxx-xxxx</span> 
+            <!-- Placeholder; update when you have your phone plan -->
           </li>
           <li>
-            <strong>Email:</strong> <span>info@northstarassistance.com</span>
-          </li>
-          <li>
-            <strong>Address:</strong> <span>1234 Care Lane, Minneapolis, MN</span>
+            <strong>Email:</strong>
+            <span>info@northstarassistance.com</span>
           </li>
         </ul>
+
+        <!-- Coverage Section -->
+        <div class="coverage-section">
+          <h3>Coverage Area</h3>
+          <p>
+            Based in Eagan, we proudly serve the Twin Cities and surrounding areas within
+            an hour's drive. Whether you’re in Minnetonka, Stillwater, or anywhere
+            north/south of Eagan, we’re here to help.
+          </p>
+          <p>
+            Not sure if we can come to your location? Feel free to contact us, and
+            we’ll do our best to accommodate your needs.
+          </p>
+        </div>
       </div>
+
+      <!-- Contact Form -->
       <div class="contact-form">
         <h2>Send a Message</h2>
-        <form @submit.prevent="submitForm">
+        <form @submit.prevent="submitForm" ref="contactForm">
           <div class="form-group">
             <label for="name">Name</label>
             <input v-model="form.name" type="text" id="name" required />
@@ -42,8 +59,23 @@
           </div>
 
           <div class="form-group">
+            <label for="subject">Subject</label>
+            <input v-model="form.subject" type="text" id="subject" required />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone (Optional)</label>
+            <input v-model="form.phone" type="tel" id="phone" />
+          </div>
+
+          <div class="form-group">
             <label for="message">Message</label>
             <textarea v-model="form.message" id="message" rows="5" required></textarea>
+          </div>
+
+          <!-- Basic reCAPTCHA Placeholder -->
+          <div class="captcha-placeholder">
+            <p>[ reCAPTCHA Placeholder ]</p>
           </div>
 
           <button class="submit-btn" type="submit">Send</button>
@@ -56,12 +88,7 @@
       <h2>Connect With Us</h2>
       <p>Stay connected through our social platforms.</p>
       <div class="social-links">
-        <!-- Example placeholders below; replace with your actual icons/links -->
-        <div
-          class="social-card"
-          v-for="(contact, index) in contacts"
-          :key="index"
-        >
+        <div class="social-card" v-for="(contact, index) in contacts" :key="index">
           <h3>{{ contact.name }}</h3>
           <a :href="contact.link" target="_blank">
             <font-awesome-icon :icon="contact.icon" size="3x" />
@@ -82,43 +109,45 @@ gsap.registerPlugin(ScrollTrigger);
 export default {
   name: 'Contact',
   setup() {
-    // Refs for sections
+    // Refs for sections and form
     const heroSection = ref(null);
     const contactSection = ref(null);
     const socialSection = ref(null);
+    const contactForm = ref(null);
 
-    // Simple reactive form model
+    // Reactive form model
     const form = reactive({
       name: '',
       email: '',
+      subject: '',
+      phone: '',
       message: '',
     });
 
-    // Placeholder social links (similar to your existing data)
+    // Social links (placeholders; replace with your own)
     const contacts = [
       {
         name: 'Email',
-        link: 'mailto:elid3dev@gmail.com',
+        link: 'mailto:someone@example.com',
         icon: ['fas', 'envelope'],
       },
       {
         name: 'GitHub',
-        link: 'https://bit.ly/Github-Eli',
+        link: 'https://github.com/YourGithub',
         icon: ['fab', 'github-square'],
       },
       {
         name: 'LinkedIn',
-        link: 'https://bit.ly/Linkedin-Eli',
+        link: 'https://linkedin.com/in/YourLinkedIn',
         icon: ['fab', 'linkedin'],
       },
       {
         name: 'Instagram',
-        link: 'https://bit.ly/Insta-Eli',
+        link: 'https://instagram.com/YourInstagram',
         icon: ['fab', 'instagram-square'],
       },
     ];
 
-    // GSAP animations on mount
     onMounted(() => {
       // Hero fade-in
       gsap.from(heroSection.value, {
@@ -132,7 +161,7 @@ export default {
         y: 50,
       });
 
-      // Contact section fade/slide in
+      // Contact section fade in
       gsap.from(contactSection.value, {
         scrollTrigger: {
           trigger: contactSection.value,
@@ -142,6 +171,19 @@ export default {
         duration: 1,
         opacity: 0,
         y: 50,
+      });
+
+      // Animate form groups
+      gsap.from(contactForm.value.querySelectorAll('.form-group'), {
+        scrollTrigger: {
+          trigger: contactForm.value,
+          start: 'top 80%',
+          toggleActions: 'play none none reset',
+        },
+        duration: 0.8,
+        opacity: 0,
+        y: 30,
+        stagger: 0.2,
       });
 
       // Social section fade in
@@ -157,14 +199,17 @@ export default {
       });
     });
 
-    // A fake form handler
+    // Basic form handler
     const submitForm = () => {
-      // You can integrate your form submission logic (e.g. a fetch or axios post)
       console.log('Form submitted:', form);
-      alert(`Thanks for reaching out, ${form.name}!`);
-      // Reset form
+      alert(
+        `Thanks for reaching out, ${form.name}! We received your message on "${form.subject}".`
+      );
+      // Reset
       form.name = '';
       form.email = '';
+      form.subject = '';
+      form.phone = '';
       form.message = '';
     };
 
@@ -172,6 +217,7 @@ export default {
       heroSection,
       contactSection,
       socialSection,
+      contactForm,
       form,
       submitForm,
       contacts,
@@ -195,17 +241,14 @@ export default {
   color: #fff;
   margin-bottom: 50px;
 }
-
 .hero-content {
   max-width: 800px;
   margin: 0 auto;
 }
-
 .hero-content h1 {
   font-size: 3rem;
   margin-bottom: 20px;
 }
-
 .hero-content p {
   font-size: 1.2rem;
   margin-bottom: 40px;
@@ -221,33 +264,40 @@ export default {
   flex-wrap: wrap;
   padding: 0 20px;
 }
-
 .contact-info,
 .contact-form {
   flex: 1 1 400px;
   min-width: 300px;
 }
-
 .contact-info h2,
 .contact-form h2 {
   font-size: 2rem;
   margin-bottom: 15px;
   color: #007bff;
 }
-
 .contact-info p {
   font-size: 1.1rem;
   line-height: 1.6;
   margin-bottom: 20px;
 }
-
 .info-list {
   list-style-type: none;
   padding: 0;
 }
-
 .info-list li {
   margin: 8px 0;
+}
+/* Coverage Section */
+.coverage-section {
+  margin-top: 30px;
+}
+.coverage-section h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #007bff;
+}
+.coverage-section p {
+  margin: 5px 0;
 }
 
 /* Contact Form */
@@ -256,13 +306,11 @@ form {
   flex-direction: column;
   gap: 20px;
 }
-
 .form-group label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
-
 .form-group input,
 .form-group textarea {
   width: 100%;
@@ -271,7 +319,17 @@ form {
   border-radius: 5px;
   border: 1px solid #ccc;
 }
-
+.captcha-placeholder {
+  background-color: #f5f5f5;
+  padding: 1em;
+  text-align: center;
+  font-style: italic;
+  border-radius: 5px;
+  margin-top: -5px;
+  margin-bottom: -5px;
+  color: #666;
+  font-size: 0.9rem;
+}
 .submit-btn {
   background-color: #007bff;
   color: #fff;
@@ -293,25 +351,21 @@ form {
   margin-bottom: 80px;
   padding: 0 20px;
 }
-
 .social-section h2 {
   font-size: 2rem;
   margin-bottom: 20px;
   color: #007bff;
 }
-
 .social-section p {
   margin-bottom: 40px;
   font-size: 1.1rem;
 }
-
 .social-links {
   display: flex;
   justify-content: center;
   gap: 2rem;
   flex-wrap: wrap;
 }
-
 .social-card {
   width: 150px;
   background-color: #f0f0f0;
@@ -320,17 +374,14 @@ form {
   transition: transform 0.3s, background-color 0.3s;
   cursor: pointer;
 }
-
 .social-card:hover {
   transform: translateY(-5px);
   background-color: #007bff;
 }
-
 .social-card h3 {
   margin-bottom: 10px;
   color: #333;
 }
-
 .social-card a {
   color: #000;
   transition: color 0.3s;
