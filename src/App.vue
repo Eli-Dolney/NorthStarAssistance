@@ -123,10 +123,10 @@ html, body, #app {
   font-family: 'Open Sans', Arial, sans-serif;
 }
 
-/* Background color for the app (adjust to your needs) */
+/* Background color for the app */
 #app {
-  background-color: #f5f5f5;
-  color: #333;
+  background-color: #F7F7F7; /* Light background for the app */
+  color: #2D3033; /* Dark charcoal for better readability */
   display: flex;
   flex-direction: column;
 }
@@ -136,8 +136,8 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: #193e1f; /* Dark forest green - Minnesota nature theme */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  background: #156064; /* Deep Teal - Primary color */
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Main nav container */
@@ -145,7 +145,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.8rem 2rem;
+  padding: 1rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
@@ -171,12 +171,12 @@ nav {
 }
 
 .logo-icon {
-  color: #f8c630; /* Gold star color */
+  color: #FFC13B; /* Warm Gold star color */
   font-size: 1.7rem;
 }
 
 .nav-brand .logo:hover {
-  color: #f8c630;
+  color: #FFC13B;
 }
 
 /* Burger menu button (hidden on larger screens) */
@@ -217,7 +217,7 @@ nav {
 }
 
 .nav-links li a:hover {
-  color: #f8c630;
+  color: #FFC13B;
 }
 
 /* Animated underline effect for nav links */
@@ -228,7 +228,7 @@ nav {
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #f8c630;
+  background-color: #FFC13B;
   transition: width 0.3s;
 }
 
@@ -239,18 +239,20 @@ nav {
 
 /* Contact button styling */
 .contact-button a {
-  background-color: #f8c630;
-  color: #193e1f !important;
-  padding: 0.5rem 1.2rem !important;
+  background-color: #FFC13B;
+  color: #156064 !important;
+  padding: 0.6rem 1.4rem !important;
   border-radius: 50px;
   font-weight: 600;
   transition: all 0.3s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .contact-button a:hover {
   background-color: #ffffff;
-  color: #193e1f !important;
+  color: #156064 !important;
   transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .contact-button a::after {
@@ -272,7 +274,7 @@ nav {
     position: absolute;
     top: 70px; /* just below the nav bar */
     right: 0;
-    background-color: #193e1f;
+    background-color: #156064;
     flex-direction: column;
     width: 100%;
     max-width: 300px;
@@ -280,7 +282,7 @@ nav {
     gap: 1.2rem;
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
-    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.15);
     border-radius: 0 0 0 10px;
   }
   
@@ -311,7 +313,7 @@ main {
 
 /* Footer styling */
 footer {
-  background-color: #193e1f;
+  background-color: #156064; /* Deep Teal - Primary color */
   color: #ffffff;
   padding: 3rem 2rem 1rem;
   margin-top: 3rem;
@@ -351,7 +353,7 @@ footer {
 }
 
 footer h3 {
-  color: #f8c630;
+  color: #FFC13B; /* Warm Gold accent */
   margin-bottom: 1rem;
   font-size: 1.2rem;
 }
@@ -371,7 +373,7 @@ footer h3 {
 }
 
 .footer-links a:hover {
-  color: #f8c630;
+  color: #FFC13B;
 }
 
 .footer-contact p {
